@@ -70,7 +70,7 @@ namespace GBD.Service.Service
 			using (_dbContext)
 			{
 				var sql = "EXEC dbo.Sp_ProductDataIns @jsonData = {0}";
-				_dbContext.Database.ExecuteSqlRaw(sql, dataFromApi);
+				_dbContext.Database.ExecuteSqlRaw(sql, dataToSave);
 			}
 		}
 
