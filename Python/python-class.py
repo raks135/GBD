@@ -1,5 +1,5 @@
 
-class Calucate:
+class Calculate:
     def __init__(self,a,b):
         self.a=a
         self.b=b
@@ -7,6 +7,6 @@ class Calucate:
     def add(self):
         return self.a+self.b
 
-obj=Calucate(5,3)
+obj=Calculate(5,3)
 result=obj.add()
 print(f"The result is {result}.")        
