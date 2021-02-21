@@ -35,7 +35,7 @@ namespace GBD.Service.Service
 			var responseBody = client.Execute(request).Content;
 
 			var parsedObject = JObject.Parse(responseBody);
-			var dataFromApi = JsonConvert.DeserializeObject<List<ProductDto>>(parsedObject.GetValue("data").ToString()).Take(1);
+			var dataFromApi = JsonConvert.DeserializeObject<List<ProductDto>>(parsedObject.GetValue("data").ToString());
 
 			//ProductDetail
 

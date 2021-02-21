@@ -10,7 +10,6 @@ namespace GBD
 	{
 		public static void Main(string[] args)
 		{
-			CreateHostBuilder(args).Build().Run();
 
 			//Read Configuration from appSettings
 			var config = new ConfigurationBuilder()
@@ -21,7 +20,7 @@ namespace GBD
 			Log.Logger = new LoggerConfiguration()
 					.ReadFrom.Configuration(config)
 					.CreateLogger();
-			Serilog.Debugging.SelfLog.Enable(msg => Debug.WriteLine(msg));
+			CreateHostBuilder(args).Build().Run();
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>
