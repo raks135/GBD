@@ -1,0 +1,93 @@
+<html>
+<title>Dynamic Form</title>
+
+<body>
+    <div id="form">
+
+    </div>
+    <script>
+
+        var jsonFromDB = [{
+            "Field": "Id", "Type": "Number", "Min_Value": 1
+        },
+        {
+            "Field": "Name", "Type": "Text", "Max_Length": 100
+        },
+        {
+            "Field": "Description", "Type": "LongText", "Max_Length": 1000
+        },
+        {
+            "Field": "Score", "Type": "DropDownList", "Allowed_Values": ["0-3", "4-7", "8+"]
+        },
+        {
+            "Field": "Gender", "Type": "RadioButton", "Allowed_Values": ["Male", "Female"]
+        },
+        {
+            "Field": "Interests", "Type": "CheckBox", "Allowed_Values": ["C#", "SQL", "Python"]
+        }];
+
+        var f = document.createElement("form");
+
+        for (i = 0; i < jsonFromDB.length; i++) {
+
+            var l = document.createElement("label");
+            l.innerHTML = jsonFromDB[i].Field + ':';
+
+            f.appendChild(l);
+
+
+            if (jsonFromDB[i].Type == "Text" || jsonFromDB[i].Type == "Number" || jsonFromDB[i].Type == "LongText") {
+                var j = document.createElement("input");
+                j.setAttribute('type', jsonFromDB[i].Type);
+                f.appendChild(j);
+            }
+
+            if (jsonFromDB[i].Max_Length > 0) {
+                j.setAttribute('maxlength', jsonFromDB[i].Max_Length);
+                f.appendChild(j);
+            }
+
+            if (jsonFromDB[i].Min_Value > 0) {
+                j.setAttribute('minlength', jsonFromDB[i].Min_Value);
+                f.appendChild(j);
+            }
+
+            if (jsonFromDB[i].Type == "DropDownList") {
+
+                var j = document.createElement("select");
+                for (k = 0; k < jsonFromDB[i]?.Allowed_Values?.length; k++) {
+                    if (jsonFromDB[i].Type == "DropDownList") {
+                        var o = document.createElement("option");
+                        o.innerHTML = jsonFromDB[i]?.Allowed_Values[k];
+                        j.appendChild(o);
+                    }
+                }
+                f.appendChild(j);
+            }
+
+
+            if (jsonFromDB[i].Type == "RadioButton" || jsonFromDB[i].Type == "CheckBox") {
+                for (k = 0; k < jsonFromDB[i]?.Allowed_Values?.length; k++) {
+                    var l = document.createElement("label");
+                    var r = document.createElement("input");
+                    r.setAttribute('type', jsonFromDB[i].Type == "RadioButton" ? "radio" : jsonFromDB[i].Type);
+                    r.setAttribute('name', jsonFromDB[i].Field);
+                    r.setAttribute('value', jsonFromDB[i]?.Allowed_Values[k]);
+                    l.innerHTML = jsonFromDB[i]?.Allowed_Values[k];
+                    f.appendChild(r);
+                    f.appendChild(l);
+
+                }
+            }
+
+            f.appendChild(document.createElement("br"))
+        }
+        document.getElementsByTagName('body')[0].appendChild(f);
+
+    </script>
+
+
+</body>
+
+
+</html>
