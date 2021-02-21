@@ -1,3 +1,6 @@
+
+1)CTE
+
 WITH cte
 AS (SELECT  c.id,
            c.Name  
@@ -14,3 +17,20 @@ AS (SELECT  c.id,
            cte.Date,
            cte.Qty
             FROM cte WHERE rn<3
+
+2)CROSS APPLY
+SELECT 
+       t.id,
+       t.date,
+       t.qty,
+       c.name
+FROM dbo.customer AS c
+    CROSS APPLY
+(
+    SELECT TOP 2
+           c2.id,
+           c2.date,
+           c2.qty
+    FROM dbo.customerorder AS c2
+    WHERE c2.id = c.id ORDER BY c2.date DESC
+) t;
